@@ -1,4 +1,7 @@
-## Welcome to GitHub Pages
+## Hello world !
+
+This is sampath ! Just random kid from nintendo's generation who do codes for fun and to pay bills ! 
+
 
 You can use the [editor on GitHub](https://github.com/codyowl/codyowl.github.io/edit/master/index.md) to maintain and preview the content for your website in Markdown files.
 

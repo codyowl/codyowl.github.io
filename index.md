@@ -3,10 +3,10 @@
 This is sampath ! Just random kid from nintendo's generation who do codes for fun and to pay bills ! 
 
 ### My Blogs/Vlogs:
- - Pythonsnippetizer(https://pythonsnippetizer.com/) : <br/>
+ - [Pythonsnippetizer](https://pythonsnippetizer.com/) : <br/>
    My blog for beginner level python coders to use as a cheat sheet to refer things straight away !
  
- - My Twitchstream(https://www.twitch.tv/codyowl) : <br/>
+ - [My Twitchstream](https://www.twitch.tv/codyowl) : <br/>
    My twitch stream where I stream about programming/games.
 
 ### Products aka hobby projects I built/building : 

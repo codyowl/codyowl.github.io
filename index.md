@@ -1,6 +1,9 @@
 ## Hello world !
 
-This is sampath ! Just random kid from nintendo's generation who do codes for fun and to pay bills ! 
+This is sampath ! Just a random kid from nintendo's generation who do codes for fun and to pay bills ! 
+
+<img align="right" width="100" height="100" src="https://user-images.githubusercontent.com/9798362/76055603-1c24d680-5f9a-11ea-8487-4c037f016081.jpg">
+![me_python](https://user-images.githubusercontent.com/9798362/76055603-1c24d680-5f9a-11ea-8487-4c037f016081.jpg)
 
 ### My Blogs/Vlogs:
  - [Pythonsnippetizer](https://pythonsnippetizer.com/) : <br/>

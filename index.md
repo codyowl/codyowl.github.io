@@ -10,6 +10,9 @@ This is sampath ! Just a random kid from nintendo's generation who do codes for 
 ### My Blogs/Vlogs:
  - [Pythonsnippetizer](https://pythonsnippetizer.com/) : <br/>
    My blog for beginner level python coders to use as a cheat sheet to refer things straight away !
+   
+ - [Djangosnippetizer](https://djangosnippetizer.wordpress.com/) : <br/>
+   My blog for beginner level python devs who wish to explore things regarding Django.  
  
  - [My Twitchstream](https://www.twitch.tv/codyowl) : <br/>
    My twitch stream where I stream about programming/games.

@@ -1,4 +1,4 @@
-<img align="right" width="120" height="120" src="https://user-images.githubusercontent.com/9798362/76055603-1c24d680-5f9a-11ea-8487-4c037f016081.jpg">
+<img align="right" width="240" height="240" src="https://user-images.githubusercontent.com/9798362/76055603-1c24d680-5f9a-11ea-8487-4c037f016081.jpg">
 
 
 
@@ -79,5 +79,11 @@ This is sampath ! Just a random kid from nintendo's generation who do codes for 
 
    Learning under progress   
    
+### Music :
    
+ - [Heal the world MJ cover] (https://soundcloud.com/sampath-here/heal-the-world-michael-jackson)
+ 
+ - [Back street boys] (https://soundcloud.com/sampath-here/as-long-as-back-street-boys)
+ 
+ - [Iruvizhi unadhe (guitar cover)] (https://soundcloud.com/sampath-here/iruvizhiunathe)
 

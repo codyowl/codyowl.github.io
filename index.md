@@ -81,9 +81,9 @@ This is sampath ! Just a random kid from nintendo's generation who do codes for 
    
 ### Music :
    
- - [Heal the world MJ cover] (https://soundcloud.com/sampath-here/heal-the-world-michael-jackson)
+ - [Heal the world MJ cover](https://soundcloud.com/sampath-here/heal-the-world-michael-jackson)
  
- - [Back street boys] (https://soundcloud.com/sampath-here/as-long-as-back-street-boys)
+ - [Back street boys](https://soundcloud.com/sampath-here/as-long-as-back-street-boys)
  
- - [Iruvizhi unadhe (guitar cover)] (https://soundcloud.com/sampath-here/iruvizhiunathe)
+ - [Iruvizhi unadhe (guitar cover)](https://soundcloud.com/sampath-here/iruvizhiunathe)
 

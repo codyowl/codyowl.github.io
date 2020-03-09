@@ -89,3 +89,7 @@ This is sampath ! Just a random kid from nintendo's generation who do codes for 
  
  - [Kanmani anbodu kadhalan(guitar cover)](https://soundcloud.com/sampath-here/kanmani-anbodu-guitar-raw-cover)
 
+### Languages:
+
+ - [mandarin] (started learning)
+ - [french] (started learning)

@@ -6,7 +6,7 @@
 
 This is sampath ! Just a random kid from nintendo's generation who do codes for fun and to pay bills ! 
 
-## For skype classes/enquires feel free to shoot an email : codyowl@gmail.com
+For skype classes/enquires feel free to shoot an email : codyowl@gmail.com
 
 
 ### My Blogs/Vlogs:

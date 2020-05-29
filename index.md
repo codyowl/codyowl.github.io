@@ -19,6 +19,11 @@ For skype classes/enquires feel free to shoot an email : codyowl@gmail.com
  - [My Twitchstream](https://www.twitch.tv/codyowl) : <br/>
    My twitch stream where I stream about programming/games.
 
+### My competitive programming profiles:
+ - [HackerRank](https://www.hackerrank.com/mesampathhere)
+
+ - [Leetcode](https://leetcode.com/codyowl/)
+
 ### Products aka hobby projects I built/building : 
  - [Daily Journal](http://dailyjournal-demo.herokuapp.com/) : <br/>
    A simple personal activities tracker built for myself to jot down things.

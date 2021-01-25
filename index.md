@@ -8,6 +8,8 @@ This is sampath ! Just a random kid from nintendo's generation who do codes for 
 
 For skype classes/enquires feel free to shoot an email : codyowl@gmail.com
 
+When i'm not [coding](https://github.com/codyowl), I would be playing [chess](https://lichess.org/@/codyowl), [strumming my guitar](https://soundcloud.com/sampath-here), [reading books](https://www.goodreads.com/user/show/57002151-sampath-kumar),
+
 
 ### My Blogs/Vlogs:
  - [Pythonsnippetizer](https://pythonsnippetizer.com/) : <br/>

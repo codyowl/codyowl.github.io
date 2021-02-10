@@ -86,7 +86,7 @@ When i'm not [coding](https://github.com/codyowl), I would be playing [chess](ht
    
 ### Design :
 
-   Learning under progress   
+   - [Contra's energy zone](https://dribbble.com/shots/15096378-Pixel-art-practise-Contra-s-energy-zone?utm_source=Clipboard_Shot&utm_campaign=codyowl&utm_content=Pixel%20art%20practise%20-%20Contra's%20energy%20zone&utm_medium=Social_Share)   
    
 ### Music :
    

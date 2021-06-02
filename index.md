@@ -8,7 +8,7 @@ This is sampath ! Just a random kid from nintendo's generation who do codes for 
 
 For skype classes/enquires feel free to shoot an email : codyowl@gmail.com
 
-When i'm not [coding](https://github.com/codyowl), I would be playing [chess](https://lichess.org/@/codyowl), [strumming my guitar](https://soundcloud.com/sampath-here), [reading books](https://www.goodreads.com/user/show/57002151-sampath-kumar),
+When i'm not [coding](https://github.com/codyowl), I would be playing [chess](https://lichess.org/@/codyowl), [strumming my guitar](https://soundcloud.com/sampath-here), [reading books](https://www.goodreads.com/user/show/57002151-sampath-kumar), [focusing my lens](https://www.flickr.com/photos/183273200@N08/),
 
 
 ### My Blogs/Vlogs:

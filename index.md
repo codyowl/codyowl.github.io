@@ -4,11 +4,11 @@
 
 ## Hello world !
 
-This is sampath ! Just a random kid from nintendo's generation who do codes for fun and to pay bills ! 
+This is sampath ! Just a random kid from nintendo's generation who do codes for fun and to pay bills ! Software developer with sound knowledge in building scalable backend systems, architecting infrastructure solutions , containers and orchestrations with kubernetes.
 
-For skype classes/enquires feel free to shoot an email : codyowl@gmail.com
+If you want to scale your product/ refactoring code base/ tweaking architecture design feel free to shoot an email : codyowl@gmail.com
 
-When i'm not [coding](https://github.com/codyowl), I would be playing [chess](https://lichess.org/@/codyowl), [strumming my guitar](https://soundcloud.com/sampath-here), [reading books](https://www.goodreads.com/user/show/57002151-sampath-kumar), [focusing my lens](https://www.flickr.com/photos/183273200@N08/),
+When i'm not [coding](https://github.com/codyowl), I would be playing [chess](https://lichess.org/@/codyowl), [strumming my guitar](https://soundcloud.com/sampath-here), [reading books](https://www.goodreads.com/user/show/57002151-sampath-kumar), [focusing my lens](https://www.flickr.com/photos/183273200@N08/),[improvising my culinary skills]
 
 
 ### My Blogs/Vlogs:

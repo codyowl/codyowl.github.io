@@ -4,7 +4,7 @@
 
 ## Hello world !
 
-This is sampath ! Just a random kid from nintendo's generation who do codes for fun and to pay bills ! Software developer by day and indie hacker by night with sound knowledge in building scalable backend systems, architecting infrastructure solutions , containers and orchestrations with kubernetes.
+This is sampath ! Just a random kid from nintendo's generation who do codes for fun and to pay bills ! Software developer by day and indie hacker by night with sound knowledge in building scalable backend systems, architecting infrastructure solutions , containers and orchestrations with beautifule tools like kubernetes.
 
 If you want to scale your product/ refactoring code base/ tweaking architecture design feel free to shoot an email : codyowl@gmail.com
 

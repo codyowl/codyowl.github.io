@@ -8,7 +8,7 @@ This is sampath ! Just a random kid from nintendo's generation who do codes for 
 
 If you want to scale your product/ refactoring code base/ tweaking architecture design feel free to shoot an email : codyowl@gmail.com
 
-When i'm not [coding](https://github.com/codyowl), I would be playing [chess](https://lichess.org/@/codyowl), [strumming my guitar](https://soundcloud.com/sampath-here), [reading books](https://www.goodreads.com/user/show/57002151-sampath-kumar), [focusing my lens](https://www.flickr.com/photos/183273200@N08/), [improvising my culinary skills](https://in.pinterest.com/mesampathhere/my-culinary-skills/), [Doodling pretty rarely](https://dribbble.com/codyowl), [Pretending to be a film buff](https://letterboxd.com/sampathhere/) 
+When i'm not [coding](https://github.com/codyowl), I would be playing [chess](https://lichess.org/@/codyowl), [strumming my guitar](https://soundcloud.com/sampath-here), [reading books](https://www.goodreads.com/user/show/57002151-sampath-kumar), [focusing my lens](https://www.flickr.com/photos/183273200@N08/), [improvising my culinary skills](https://in.pinterest.com/mesampathhere/my-culinary-skills/), [Doodling pretty rarely](https://dribbble.com/codyowl), [Pretending to be a film buff](https://letterboxd.com/sampathhere/films/) 
 
 
 ### My Blogs/Vlogs:

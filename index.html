@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#15110b">
-  <title>Sampath Nagarajan | Portfolio Maze</title>
+  <title>Sampath | Portfolio Maze</title>
   <style>
     :root {
       color-scheme: dark;
@@ -81,6 +81,103 @@
       margin: 5px 0 0;
       color: var(--muted);
       font-size: .95rem;
+    }
+
+    .intro-card {
+      position: relative;
+      padding: 16px;
+      background: #6f0704;
+      border: 4px solid #b2140c;
+      box-shadow: inset 0 0 0 3px #310302, 0 8px 22px var(--shadow);
+      overflow: hidden;
+    }
+
+    .intro-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, .06) 0 2px, transparent 2px 5px),
+        linear-gradient(180deg, rgba(255, 226, 0, .08), transparent 45%);
+      mix-blend-mode: screen;
+    }
+
+    .intro-card h2 {
+      position: relative;
+      margin: 0 0 14px;
+      color: #ffe600;
+      font-family: "Courier New", monospace;
+      font-size: clamp(1.45rem, 4vw, 2.25rem);
+      line-height: 1;
+      text-align: center;
+      text-transform: none;
+      text-shadow: 4px 4px 0 #3b0502;
+    }
+
+    .intro-frame {
+      position: relative;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: center;
+      min-height: 160px;
+      padding: 14px;
+      background: #3f0705;
+      border: 3px solid #a40d09;
+      box-shadow: inset 0 0 0 2px #210201;
+    }
+
+    .pixel-glyph {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      background: #201b18;
+      border: 3px solid #120d0b;
+      box-shadow: inset 0 0 0 2px #8a8a8a;
+      color: #d9d9d9;
+      font-size: 1.6rem;
+      line-height: 1;
+      text-shadow: 2px 2px 0 #000;
+    }
+
+    .pixel-face {
+      width: 54px;
+      height: 72px;
+      background:
+        linear-gradient(90deg, transparent 0 9px, #d6d6d6 9px 16px, transparent 16px 38px, #d6d6d6 38px 45px, transparent 45px),
+        linear-gradient(180deg, #eeeeee 0 13px, #f1b47f 13px 48px, #713f26 48px 72px);
+      border: 3px solid #120d0b;
+      box-shadow: inset 0 0 0 2px #9a714f;
+      position: relative;
+    }
+
+    .pixel-face::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 29px;
+      width: 6px;
+      height: 6px;
+      background: #172b46;
+      box-shadow: 20px 0 0 #172b46, 10px 13px 0 #8b3a28;
+    }
+
+    .intro-copy {
+      margin: 0;
+      color: #d9d9d9;
+      font-family: "Courier New", monospace;
+      font-size: clamp(1rem, 2.2vw, 1.45rem);
+      font-weight: 700;
+      line-height: 1.18;
+      text-shadow: 3px 3px 0 #000;
+    }
+
+    .intro-copy a {
+      color: #ffe600;
+      text-decoration: none;
+      border-bottom: 2px solid rgba(255, 230, 0, .55);
     }
 
     .status-strip {
@@ -375,13 +472,24 @@
       .room-card {
         padding: 10px;
       }
+
+      .intro-frame {
+        grid-template-columns: 1fr;
+        justify-items: center;
+        text-align: center;
+      }
+
+      .pixel-glyph,
+      .pixel-face {
+        display: none;
+      }
     }
   </style>
 </head>
 <body>
   <header class="topbar">
     <div class="brand">
-      <h1>Sampath Nagarajan</h1>
+      <h1>Sampath</h1>
       <p>Backend engineer, indie hacker, and builder of small useful things.</p>
     </div>
     <div class="status-strip" aria-label="Portfolio status">
@@ -412,9 +520,16 @@
     </section>
 
     <aside class="panel" aria-label="Portfolio dossier">
-      <section class="dossier">
-        <h2>Mission Brief</h2>
-        <p>Navigate room by room through blogs, projects, tooling, apps, design, music, and ways to get in touch. Each colored wall marker matches a dossier section.</p>
+      <section class="intro-card">
+        <h2>How tough are you?</h2>
+        <div class="intro-frame">
+          <span class="pixel-glyph" aria-hidden="true">▶</span>
+          <p class="intro-copy">
+            Hello world, this is Sampath, just a random kid from Nintendo's generation who does code for fun and to pay bills.
+            When am not <a href="https://github.com/codyowl">coding</a>, I would be playing <a href="https://lichess.org/@/codyowl">chess</a>, strumming my <a href="https://soundcloud.com/sampath-here">guitar</a>, focusing my <a href="https://www.flickr.com/people/183273200@N08/">lens</a>, improvising my <a href="https://in.pinterest.com/mesampathhere/my-culinary-skills/">culinary skills</a>, <a href="https://dribbble.com/codyowl">doodling</a>, pretending to be a <a href="https://letterboxd.com/sampathhere/films/by/rated-date/">film buff</a>.
+          </p>
+          <span class="pixel-face" aria-hidden="true"></span>
+        </div>
       </section>
 
       <div class="room-list" id="roomList"></div>
@@ -447,7 +562,7 @@
         id: 'start',
         code: '01',
         title: 'Start Room',
-        summary: 'Hello world. I build backend systems, infrastructure, and odd weekend tools for fun and bills.',
+        summary: 'Hello world, this is Sampath. Walk the corridors to find the projects, blogs, tools, and side quests.',
         color: '#f0b43f',
         pos: [2.5, 2.5],
         items: [

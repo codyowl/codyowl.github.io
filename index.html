@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#15110b">
+  <title>Sampath Nagarajan | Portfolio Maze</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink: #f5e7c8;
+      --muted: #c8b891;
+      --amber: #f0b43f;
+      --panel: #181411;
+      --panel-2: #251c16;
+      --shadow: rgba(0, 0, 0, .42);
+      font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+      margin: 0;
+      background: #0d0b09;
+      color: var(--ink);
+      overflow-x: hidden;
+    }
+
+    body {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: #ffd36e;
+      text-decoration-color: rgba(255, 211, 110, .45);
+      text-underline-offset: 3px;
+    }
+
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid #ffd36e;
+      outline-offset: 3px;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      min-height: 68px;
+      padding: 12px clamp(14px, 4vw, 28px);
+      background:
+        linear-gradient(90deg, rgba(93, 51, 35, .92), rgba(30, 24, 19, .96)),
+        repeating-linear-gradient(90deg, transparent 0 18px, rgba(255, 255, 255, .045) 18px 20px);
+      border-bottom: 4px solid #090807;
+      box-shadow: 0 8px 24px var(--shadow);
+      position: relative;
+      z-index: 3;
+    }
+
+    .brand {
+      min-width: 0;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: clamp(1.2rem, 2.7vw, 2.1rem);
+      line-height: 1.05;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      text-shadow: 3px 3px 0 #000;
+    }
+
+    .brand p {
+      margin: 5px 0 0;
+      color: var(--muted);
+      font-size: .95rem;
+    }
+
+    .status-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(72px, auto));
+      border: 3px solid #0a0908;
+      background: #0f0d0b;
+      box-shadow: inset 0 0 0 2px #3d3026;
+    }
+
+    .stat {
+      padding: 7px 10px;
+      text-align: center;
+      border-left: 2px solid #3d3026;
+      white-space: nowrap;
+    }
+
+    .stat:first-child {
+      border-left: 0;
+    }
+
+    .stat b {
+      display: block;
+      color: var(--amber);
+      font-size: 1.05rem;
+      line-height: 1.1;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: .68rem;
+      text-transform: uppercase;
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+      min-height: calc(100vh - 68px);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, .04), transparent 34%),
+        #100d0a;
+    }
+
+    .viewport {
+      position: relative;
+      min-height: 620px;
+      isolation: isolate;
+      background: #060605;
+    }
+
+    #maze {
+      display: block;
+      width: 100%;
+      height: 100%;
+      min-height: 620px;
+      image-rendering: pixelated;
+      cursor: crosshair;
+    }
+
+    .scanlines {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: repeating-linear-gradient(0deg, transparent 0 3px, rgba(0, 0, 0, .16) 3px 5px);
+      mix-blend-mode: multiply;
+    }
+
+    .hud {
+      position: absolute;
+      inset: auto 16px 16px;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 156px minmax(0, 1fr) auto;
+      gap: 12px;
+      align-items: end;
+      pointer-events: none;
+    }
+
+    .map {
+      width: 156px;
+      height: 156px;
+      border: 3px solid #0b0908;
+      background: #17110c;
+      box-shadow: inset 0 0 0 2px #5b4634, 0 8px 22px var(--shadow);
+    }
+
+    #minimap {
+      width: 100%;
+      height: 100%;
+      image-rendering: pixelated;
+    }
+
+    .room-card {
+      padding: 12px 14px;
+      min-width: 0;
+      background: rgba(18, 14, 11, .88);
+      border: 3px solid #0b0908;
+      box-shadow: inset 0 0 0 2px #5b4634, 0 8px 22px var(--shadow);
+    }
+
+    .room-card h2 {
+      margin: 0;
+      font-size: clamp(1.05rem, 2.2vw, 1.45rem);
+      text-transform: uppercase;
+      color: #ffe0a0;
+      text-shadow: 2px 2px 0 #000;
+    }
+
+    .room-card p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      line-height: 1.35;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(3, 46px);
+      gap: 6px;
+      pointer-events: auto;
+    }
+
+    .controls button {
+      min-height: 42px;
+      border: 3px solid #0a0908;
+      background: #2b2119;
+      color: var(--ink);
+      box-shadow: inset 0 0 0 2px #6b523d;
+      font: 700 1rem/1 system-ui, sans-serif;
+      cursor: pointer;
+    }
+
+    .controls button:active {
+      transform: translateY(1px);
+      background: #3b2c20;
+    }
+
+    .controls .wide {
+      grid-column: span 3;
+    }
+
+    .panel {
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      gap: 14px;
+      min-height: 0;
+      padding: 18px;
+      background:
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, .035) 0 2px, transparent 2px 18px),
+        linear-gradient(180deg, #221915, #110e0c);
+      border-left: 4px solid #090807;
+    }
+
+    .dossier {
+      padding: 16px;
+      background: var(--panel);
+      border: 3px solid #0a0908;
+      box-shadow: inset 0 0 0 2px #4c3b2e;
+    }
+
+    .dossier h2 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+      text-transform: uppercase;
+      color: #ffe0a0;
+    }
+
+    .dossier p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .room-list {
+      display: grid;
+      gap: 10px;
+      min-height: 0;
+      overflow: auto;
+      padding-right: 4px;
+    }
+
+    .zone {
+      padding: 12px;
+      background: var(--panel-2);
+      border: 3px solid #0a0908;
+      box-shadow: inset 0 0 0 2px #4c3b2e;
+    }
+
+    .zone.is-active {
+      box-shadow: inset 0 0 0 2px var(--amber), 0 0 0 2px rgba(240, 180, 63, .24);
+    }
+
+    .zone h3 {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      margin: 0 0 8px;
+      font-size: 1rem;
+      text-transform: uppercase;
+    }
+
+    .badge {
+      flex: 0 0 auto;
+      min-width: 28px;
+      padding: 3px 6px;
+      color: #111;
+      background: var(--amber);
+      font-size: .72rem;
+      text-align: center;
+    }
+
+    .zone ul {
+      display: grid;
+      gap: 7px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .zone li {
+      color: var(--muted);
+      line-height: 1.32;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 980px) {
+      .shell {
+        grid-template-columns: 1fr;
+      }
+
+      .viewport,
+      #maze {
+        min-height: 68vh;
+      }
+
+      .panel {
+        border-left: 0;
+        border-top: 4px solid #090807;
+      }
+
+      .room-list {
+        max-height: none;
+        overflow: visible;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .topbar {
+        grid-template-columns: 1fr;
+      }
+
+      .status-strip {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .hud {
+        grid-template-columns: 104px minmax(0, 1fr);
+        inset: auto 10px 10px;
+      }
+
+      .map {
+        width: 104px;
+        height: 104px;
+      }
+
+      .controls {
+        grid-column: 1 / -1;
+        justify-self: end;
+        grid-template-columns: repeat(3, 42px);
+      }
+
+      .room-card {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>Sampath Nagarajan</h1>
+      <p>Backend engineer, indie hacker, and builder of small useful things.</p>
+    </div>
+    <div class="status-strip" aria-label="Portfolio status">
+      <div class="stat"><b id="zoneStat">01</b><span>Zone</span></div>
+      <div class="stat"><b id="itemStat">06</b><span>Finds</span></div>
+      <div class="stat"><b>100</b><span>Curiosity</span></div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="viewport" aria-label="First-person portfolio maze">
+      <canvas id="maze" width="1280" height="760"></canvas>
+      <div class="scanlines" aria-hidden="true"></div>
+      <div class="hud">
+        <div class="map"><canvas id="minimap" width="156" height="156"></canvas></div>
+        <article class="room-card" aria-live="polite">
+          <h2 id="roomTitle">Start Room</h2>
+          <p id="roomSummary">Use WASD or the arrow keys to walk the portfolio corridors.</p>
+        </article>
+        <div class="controls" aria-label="Touch controls">
+          <span></span><button type="button" data-hold="forward" aria-label="Move forward">▲</button><span></span>
+          <button type="button" data-hold="left" aria-label="Turn left">◀</button>
+          <button type="button" data-hold="back" aria-label="Move backward">▼</button>
+          <button type="button" data-hold="right" aria-label="Turn right">▶</button>
+          <button type="button" class="wide" id="actionButton">Open nearest door</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="panel" aria-label="Portfolio dossier">
+      <section class="dossier">
+        <h2>Mission Brief</h2>
+        <p>Navigate room by room through blogs, projects, tooling, apps, design, music, and ways to get in touch. Each colored wall marker matches a dossier section.</p>
+      </section>
+
+      <div class="room-list" id="roomList"></div>
+
+      <nav class="footer-links" aria-label="External links">
+        <a href="mailto:codyowl@gmail.com">codyowl@gmail.com</a>
+        <a href="https://github.com/codyowl">GitHub</a>
+        <a href="https://lichess.org/@/codyowl">Chess</a>
+        <a href="trackathon-privacy.html">Trackathon terms</a>
+      </nav>
+    </aside>
+  </main>
+
+  <p class="sr-only" id="keyboardHelp">Keyboard controls: W or up arrow moves forward. S or down arrow moves backward. A and D turn. Q and E strafe. Number keys jump to rooms.</p>
+
+  <script>
+    const canvas = document.getElementById('maze');
+    const ctx = canvas.getContext('2d');
+    const mini = document.getElementById('minimap');
+    const miniCtx = mini.getContext('2d');
+    const roomTitle = document.getElementById('roomTitle');
+    const roomSummary = document.getElementById('roomSummary');
+    const roomList = document.getElementById('roomList');
+    const zoneStat = document.getElementById('zoneStat');
+    const itemStat = document.getElementById('itemStat');
+    const actionButton = document.getElementById('actionButton');
+
+    const zones = [
+      {
+        id: 'start',
+        code: '01',
+        title: 'Start Room',
+        summary: 'Hello world. I build backend systems, infrastructure, and odd weekend tools for fun and bills.',
+        color: '#f0b43f',
+        pos: [2.5, 2.5],
+        items: [
+          ['GitHub', 'https://github.com/codyowl'],
+          ['Email', 'mailto:codyowl@gmail.com'],
+          ['Chess', 'https://lichess.org/@/codyowl'],
+          ['SoundCloud', 'https://soundcloud.com/sampath-here']
+        ]
+      },
+      {
+        id: 'blogs',
+        code: '02',
+        title: 'Blogs & Streams',
+        summary: 'Cheat sheets, Django notes, and programming/game streams live down this corridor.',
+        color: '#74a56a',
+        pos: [8.5, 2.5],
+        items: [
+          ['Pythonsnippetizer', 'https://pythonsnippetizer.com/'],
+          ['Djangosnippetizer', 'https://djangosnippetizer.wordpress.com/'],
+          ['Twitch stream', 'https://www.twitch.tv/codyowl']
+        ]
+      },
+      {
+        id: 'projects',
+        code: '03',
+        title: 'Product Lab',
+        summary: 'Daily Journal, Tweety, Standup Meeting, Todolister, and other hobby builds are stocked here.',
+        color: '#b94c3e',
+        pos: [13.5, 6.5],
+        items: [
+          ['Daily Journal', 'http://dailyjournal-demo.herokuapp.com/'],
+          ['Tweety', 'https://github.com/codyowl/tweety'],
+          ['Standup Meeting', 'https://github.com/codyowl/standupmeeting'],
+          ['Todolister', 'https://github.com/codyowl/todolister'],
+          ['Compareit', 'https://github.com/codyowl/compareit']
+        ]
+      },
+      {
+        id: 'tools',
+        code: '04',
+        title: 'Tools Armory',
+        summary: 'Python modules, migration helpers, backup scripts, bots, and tiny utilities line the shelves.',
+        color: '#557fa4',
+        pos: [7.5, 9.5],
+        items: [
+          ['Django Anypayment', 'https://github.com/codyowl/django-anypayment'],
+          ['Pyirctc', 'https://github.com/codyowl/pyirctc'],
+          ['Pymigrator', 'https://github.com/codyowl/pymigrator'],
+          ['Pyrucksack', 'https://github.com/codyowl/pyrucksack'],
+          ['RedisEngine', 'https://github.com/codyowl/RedisEngine'],
+          ['Bootstrap Migrator', 'https://github.com/codyowl/bootstrap-migrator'],
+          ['Alfred', 'https://github.com/codyowl/alfred'],
+          ['Voyager', 'https://github.com/codyowl/voyager'],
+          ['Datastore Backup', 'https://github.com/codyowl/googledatastorebackup'],
+          ['Mail Sender', 'https://github.com/codyowl/mail-sender-bot'],
+          ['News Hunter', 'https://github.com/codyowl/news-hunter']
+        ]
+      },
+      {
+        id: 'creative',
+        code: '05',
+        title: 'Creative Hall',
+        summary: 'Music covers, film notes, photos, cooking pins, doodles, and pixel-art practice sit in this gallery.',
+        color: '#9d6bc0',
+        pos: [3.5, 12.5],
+        items: [
+          ['Guitar covers', 'https://soundcloud.com/sampath-here'],
+          ['Flickr', 'https://www.flickr.com/people/183273200@N08/'],
+          ['Goodreads', 'https://www.goodreads.com/user/show/57002151-sampath-kumar'],
+          ['Letterboxd', 'https://letterboxd.com/sampathhere/films/by/rated-date/'],
+          ['Dribbble', 'https://dribbble.com/codyowl']
+        ]
+      },
+      {
+        id: 'apps',
+        code: '06',
+        title: 'Mobile & Notes',
+        summary: 'Panam, Trackathon terms, language notes, and smaller experiments are tucked away here.',
+        color: '#d48055',
+        pos: [13.5, 12.5],
+        items: [
+          ['Panam currency converter', '#apps'],
+          ['Trackathon terms', 'trackathon-privacy.html'],
+          ['HackerRank', 'https://www.hackerrank.com/mesampathhere'],
+          ['Leetcode', 'https://leetcode.com/codyowl/']
+        ]
+      }
+    ];
+
+    const map = [
+      '1111111111111111',
+      '1000001000000001',
+      '1020000002000001',
+      '1000001000000001',
+      '1110101111101001',
+      '1000100000101001',
+      '1000100010102001',
+      '1000111010101001',
+      '1000000010001001',
+      '1000200010200001',
+      '1011111011110101',
+      '1000001000000101',
+      '1020000000000201',
+      '1000001000000001',
+      '1111111111111111'
+    ];
+
+    const world = map.map(row => row.split('').map(Number));
+    const tile = 1;
+    const keys = new Set();
+    const player = { x: 2.5, y: 2.5, angle: 0.05 };
+    let activeZone = zones[0];
+    let lastFrame = performance.now();
+    let nearZone = zones[0];
+
+    function resize() {
+      const rect = canvas.getBoundingClientRect();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.max(640, Math.floor(rect.width * dpr));
+      canvas.height = Math.max(420, Math.floor(rect.height * dpr));
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      mini.width = 156 * dpr;
+      mini.height = 156 * dpr;
+      miniCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function isWall(x, y) {
+      const mx = Math.floor(x);
+      const my = Math.floor(y);
+      if (my < 0 || my >= world.length || mx < 0 || mx >= world[0].length) return true;
+      return world[my][mx] === 1;
+    }
+
+    function move(dx, dy) {
+      const nextX = player.x + dx;
+      const nextY = player.y + dy;
+      if (!isWall(nextX, player.y)) player.x = nextX;
+      if (!isWall(player.x, nextY)) player.y = nextY;
+    }
+
+    function jumpTo(zone) {
+      player.x = zone.pos[0];
+      player.y = zone.pos[1];
+      activeZone = zone;
+      updateRoom();
+      document.getElementById(`zone-${zone.id}`).scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    }
+
+    function updateRoom() {
+      let closest = zones[0];
+      let closestDistance = Infinity;
+      for (const zone of zones) {
+        const distance = Math.hypot(player.x - zone.pos[0], player.y - zone.pos[1]);
+        if (distance < closestDistance) {
+          closest = zone;
+          closestDistance = distance;
+        }
+      }
+      nearZone = closest;
+      if (closestDistance < 2.7) activeZone = closest;
+
+      roomTitle.textContent = activeZone.title;
+      roomSummary.textContent = activeZone.summary;
+      zoneStat.textContent = activeZone.code;
+      itemStat.textContent = String(activeZone.items.length).padStart(2, '0');
+      document.querySelectorAll('.zone').forEach(section => {
+        section.classList.toggle('is-active', section.id === `zone-${activeZone.id}`);
+      });
+      actionButton.textContent = nearZone === activeZone ? 'Open links' : `Go to ${nearZone.title}`;
+    }
+
+    function castRay(angle) {
+      const sin = Math.sin(angle);
+      const cos = Math.cos(angle);
+      let depth = 0;
+      let hit = 0;
+      let sideShade = 1;
+
+      while (depth < 18) {
+        depth += 0.025;
+        const x = player.x + cos * depth;
+        const y = player.y + sin * depth;
+        const mx = Math.floor(x);
+        const my = Math.floor(y);
+        if (my < 0 || my >= world.length || mx < 0 || mx >= world[0].length) break;
+        hit = world[my][mx];
+        if (hit === 1 || hit === 2) {
+          const fx = x - mx;
+          const fy = y - my;
+          sideShade = Math.min(fx, 1 - fx) < Math.min(fy, 1 - fy) ? .78 : 1;
+          break;
+        }
+      }
+
+      return { depth, hit, sideShade };
+    }
+
+    function wallColor(hit, shade, depth, column) {
+      const fog = Math.max(.24, 1 - depth / 14);
+      const base = hit === 2 ? [164, 111, 54] : [103, 72, 48];
+      const mortar = column % 10 < 2 ? .78 : 1;
+      const scale = shade * fog * mortar;
+      return `rgb(${base[0] * scale}, ${base[1] * scale}, ${base[2] * scale})`;
+    }
+
+    function draw() {
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+      const horizon = height * .48;
+      const floorStart = height * .52;
+
+      ctx.fillStyle = '#1d2732';
+      ctx.fillRect(0, 0, width, horizon);
+      ctx.fillStyle = '#17100b';
+      ctx.fillRect(0, horizon, width, height - horizon);
+
+      const columns = Math.floor(width / 3);
+      const fov = Math.PI / 3;
+      for (let i = 0; i < columns; i++) {
+        const rayAngle = player.angle - fov / 2 + (i / columns) * fov;
+        const ray = castRay(rayAngle);
+        const corrected = ray.depth * Math.cos(rayAngle - player.angle);
+        const wallHeight = Math.min(height * 1.65, height / Math.max(corrected, .12));
+        const top = Math.max(0, floorStart - wallHeight / 2);
+        const x = i * 3;
+
+        ctx.fillStyle = wallColor(ray.hit, ray.sideShade, corrected, i);
+        ctx.fillRect(x, top, 4, wallHeight);
+
+        if (ray.hit === 2) {
+          ctx.fillStyle = `rgba(240, 180, 63, ${Math.max(.12, .65 - corrected / 14)})`;
+          ctx.fillRect(x, top + wallHeight * .26, 4, Math.max(4, wallHeight * .08));
+        }
+      }
+
+      drawFloor(width, height, floorStart);
+      drawMarkers(width, height);
+      drawMiniMap();
+    }
+
+    function drawFloor(width, height, floorStart) {
+      for (let y = floorStart; y < height; y += 6) {
+        const shade = (y - floorStart) / (height - floorStart);
+        ctx.fillStyle = shade > .5 ? 'rgba(66, 48, 33, .26)' : 'rgba(215, 166, 87, .08)';
+        ctx.fillRect(0, y, width, 3);
+      }
+    }
+
+    function drawMarkers(width, height) {
+      for (const zone of zones) {
+        const dx = zone.pos[0] - player.x;
+        const dy = zone.pos[1] - player.y;
+        const distance = Math.hypot(dx, dy);
+        if (distance > 6 || distance < .7) continue;
+
+        let angle = Math.atan2(dy, dx) - player.angle;
+        while (angle < -Math.PI) angle += Math.PI * 2;
+        while (angle > Math.PI) angle -= Math.PI * 2;
+        if (Math.abs(angle) > Math.PI / 4) continue;
+
+        const screenX = width / 2 + Math.tan(angle) * width;
+        const size = Math.max(18, 72 / distance);
+        const screenY = height * .47 - size;
+        ctx.fillStyle = zone.color;
+        ctx.fillRect(screenX - size / 2, screenY, size, size);
+        ctx.fillStyle = '#0d0b09';
+        ctx.font = `700 ${Math.max(10, size * .35)}px system-ui`;
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(zone.code, screenX, screenY + size / 2);
+      }
+    }
+
+    function drawMiniMap() {
+      const scale = 9.6;
+      miniCtx.clearRect(0, 0, 156, 156);
+      miniCtx.fillStyle = '#100c09';
+      miniCtx.fillRect(0, 0, 156, 156);
+      for (let y = 0; y < world.length; y++) {
+        for (let x = 0; x < world[y].length; x++) {
+          miniCtx.fillStyle = world[y][x] === 1 ? '#5d4532' : world[y][x] === 2 ? '#7e542c' : '#211711';
+          miniCtx.fillRect(x * scale, y * scale, scale - 1, scale - 1);
+        }
+      }
+      for (const zone of zones) {
+        miniCtx.fillStyle = zone.color;
+        miniCtx.fillRect(zone.pos[0] * scale - 3, zone.pos[1] * scale - 3, 6, 6);
+      }
+      miniCtx.save();
+      miniCtx.translate(player.x * scale, player.y * scale);
+      miniCtx.rotate(player.angle);
+      miniCtx.fillStyle = '#f5e7c8';
+      miniCtx.beginPath();
+      miniCtx.moveTo(7, 0);
+      miniCtx.lineTo(-5, -4);
+      miniCtx.lineTo(-5, 4);
+      miniCtx.closePath();
+      miniCtx.fill();
+      miniCtx.restore();
+    }
+
+    function step(now) {
+      const delta = Math.min(.04, (now - lastFrame) / 1000);
+      lastFrame = now;
+      const speed = 3.0 * delta;
+      const turn = 2.4 * delta;
+
+      if (keys.has('arrowleft') || keys.has('a') || keys.has('left')) player.angle -= turn;
+      if (keys.has('arrowright') || keys.has('d') || keys.has('right')) player.angle += turn;
+      const forward = keys.has('arrowup') || keys.has('w') || keys.has('forward');
+      const back = keys.has('arrowdown') || keys.has('s') || keys.has('back');
+      if (forward) move(Math.cos(player.angle) * speed, Math.sin(player.angle) * speed);
+      if (back) move(-Math.cos(player.angle) * speed, -Math.sin(player.angle) * speed);
+      if (keys.has('q')) move(Math.cos(player.angle - Math.PI / 2) * speed, Math.sin(player.angle - Math.PI / 2) * speed);
+      if (keys.has('e')) move(Math.cos(player.angle + Math.PI / 2) * speed, Math.sin(player.angle + Math.PI / 2) * speed);
+
+      updateRoom();
+      draw();
+      requestAnimationFrame(step);
+    }
+
+    function buildDossier() {
+      roomList.innerHTML = '';
+      for (const zone of zones) {
+        const section = document.createElement('section');
+        section.className = 'zone';
+        section.id = `zone-${zone.id}`;
+
+        const h = document.createElement('h3');
+        h.innerHTML = `<span>${zone.title}</span><span class="badge">${zone.code}</span>`;
+        section.appendChild(h);
+
+        const ul = document.createElement('ul');
+        for (const [label, href] of zone.items) {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = href;
+          a.textContent = label;
+          li.appendChild(a);
+          ul.appendChild(li);
+        }
+        section.appendChild(ul);
+        section.addEventListener('click', event => {
+          if (event.target.tagName !== 'A') jumpTo(zone);
+        });
+        roomList.appendChild(section);
+      }
+    }
+
+    function openNearest() {
+      if (nearZone !== activeZone) {
+        jumpTo(nearZone);
+        return;
+      }
+      document.getElementById(`zone-${activeZone.id}`).scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+
+    window.addEventListener('resize', resize);
+    window.addEventListener('keydown', event => {
+      const key = event.key.toLowerCase();
+      if (/^[1-6]$/.test(key)) {
+        jumpTo(zones[Number(key) - 1]);
+        return;
+      }
+      keys.add(key);
+    });
+    window.addEventListener('keyup', event => keys.delete(event.key.toLowerCase()));
+    actionButton.addEventListener('click', openNearest);
+
+    document.querySelectorAll('[data-hold]').forEach(button => {
+      const value = button.dataset.hold;
+      const start = event => {
+        event.preventDefault();
+        keys.add(value);
+      };
+      const end = () => keys.delete(value);
+      button.addEventListener('pointerdown', start);
+      button.addEventListener('pointerup', end);
+      button.addEventListener('pointercancel', end);
+      button.addEventListener('pointerleave', end);
+    });
+
+    buildDossier();
+    resize();
+    updateRoom();
+    requestAnimationFrame(step);
+  </script>
+</body>
+</html>

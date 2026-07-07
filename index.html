@@ -85,8 +85,8 @@
 
     .intro-card {
       position: relative;
-      width: min(980px, 100%);
-      padding: 16px;
+      width: min(1120px, 100%);
+      padding: clamp(16px, 2.2vw, 24px);
       background: #6f0704;
       border: 4px solid #b2140c;
       box-shadow: inset 0 0 0 3px #310302, 0 8px 22px var(--shadow);
@@ -129,11 +129,11 @@
     .intro-frame {
       position: relative;
       display: grid;
-      grid-template-columns: auto minmax(0, 1fr) auto;
-      gap: 12px;
+      grid-template-columns: auto minmax(0, 1fr) minmax(150px, 190px);
+      gap: clamp(14px, 2vw, 24px);
       align-items: center;
-      min-height: 160px;
-      padding: 14px;
+      min-height: 230px;
+      padding: clamp(16px, 2.4vw, 26px);
       background: #3f0705;
       border: 3px solid #a40d09;
       box-shadow: inset 0 0 0 2px #210201;
@@ -155,7 +155,7 @@
 
     .intro-photo {
       display: block;
-      width: clamp(78px, 11vw, 116px);
+      width: clamp(150px, 16vw, 190px);
       aspect-ratio: 1;
       object-fit: cover;
       border: 4px solid #120d0b;
@@ -484,7 +484,7 @@
 
       .intro-photo {
         order: -1;
-        width: 104px;
+        width: min(170px, 58vw);
       }
     }
   </style>
